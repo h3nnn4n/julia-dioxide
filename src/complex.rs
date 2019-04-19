@@ -1,6 +1,6 @@
 use std::ops::Add;
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Complex {
     pub real: f64,
     pub imaginary: f64,

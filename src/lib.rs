@@ -21,21 +21,6 @@ cfg_if! {
 }
 
 #[wasm_bindgen]
-extern "C" {
-    fn alert(s: &str);
-}
-
-#[wasm_bindgen]
-pub fn js_alert(name: &str) {
-    alert(&format!("{}", name));
-}
-
-#[wasm_bindgen]
-pub fn a_plus_b(a: i32, b: i32) -> i32 {
-    a + b
-}
-
-#[wasm_bindgen]
 pub fn init() {
     let canvas = utils::get_canvas();
 
