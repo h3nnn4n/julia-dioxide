@@ -3,11 +3,12 @@ extern crate rand;
 extern crate wasm_bindgen;
 extern crate web_sys;
 
+mod complex;
 mod julia;
 mod utils;
 
 use cfg_if::cfg_if;
-
+use complex::Complex;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::Clamped;
 
@@ -55,7 +56,7 @@ pub fn render_julia_set() {
     let width = canvas.width();
     let height = canvas.height();
 
-    let c = julia::Complex::new(real, imaginary);
+    let c = Complex::new(real, imaginary);
     let mut data = julia::get_julia_set(width, height, c);
     let data =
         web_sys::ImageData::new_with_u8_clamped_array_and_sh(Clamped(&mut data), width, height)

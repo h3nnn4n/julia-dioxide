@@ -1,5 +1,5 @@
+use complex::Complex;
 use std::f64;
-use std::ops::Add;
 
 pub fn get_julia_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
     let mut data = Vec::new();
@@ -39,37 +39,4 @@ fn get_iter_index(z: Complex, c: Complex) -> u32 {
         iter_index += 1;
     }
     iter_index
-}
-
-#[derive(Clone, Copy, Debug)]
-pub struct Complex {
-    real: f64,
-    imaginary: f64,
-}
-
-impl Complex {
-    pub fn new(real: f64, imaginary: f64) -> Complex {
-        Complex { real, imaginary }
-    }
-
-    fn square(self) -> Complex {
-        let real = (self.real * self.real) - (self.imaginary * self.imaginary);
-        let imaginary = 2.0 * self.real * self.imaginary;
-        Complex { real, imaginary }
-    }
-
-    fn norm(&self) -> f64 {
-        (self.real * self.real) + (self.imaginary * self.imaginary)
-    }
-}
-
-impl Add<Complex> for Complex {
-    type Output = Complex;
-
-    fn add(self, rhs: Complex) -> Complex {
-        Complex {
-            real: self.real + rhs.real,
-            imaginary: self.imaginary + rhs.imaginary,
-        }
-    }
 }
