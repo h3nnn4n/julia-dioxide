@@ -1,14 +1,27 @@
-var Rust: any;
-
-const init = () => {
-  let a = Rust.a_plus_b(2, 2);
-
-  $('#test').text(a);
-}
-
 export const load = () => {
-  (() => import( /* webpackChunkName: "ilovewasm" */ './pkg/ilovewasm.js').then(module => {
-    Rust = module;
-    init();
-  }))();
+  import( /* webpackChunkName: "julia_dioxide" */ './pkg/julia_dioxide.js')
+    .then(wasm => {
+      wasm.init();
+      const realInput = <HTMLInputElement>document.getElementById('real');
+      const imaginaryInput = <HTMLInputElement>document.getElementById('imaginary');
+      const renderBtn = document.getElementById('render');
+
+      if (renderBtn == null || realInput == null || imaginaryInput == null) {
+        console.log('Controls not found');
+        return;
+      }
+
+      realInput.addEventListener('change', () => {
+        wasm.render_julia_set();
+      });
+
+      imaginaryInput.addEventListener('change', () => {
+        wasm.render_julia_set();
+      });
+
+      renderBtn.addEventListener('click', () => {
+        wasm.render_julia_set();
+      });
+    })
+    .catch(console.error);
 }

@@ -1,5 +1,5 @@
 [package]
-name = "ilovewasm"
+name = "julia_dioxide"
 version = "0.1.0"
 authors = ["h3nnn4n <uber.renan@gmail.com>"]
 
@@ -23,7 +23,16 @@ lto = true
 [dependencies.web-sys]
 version = "0.3.14"
 features = [
-  "console",
+  'Document',
+  'Element',
+  'HtmlElement',
+  'Node',
+  'Window',
+  'CanvasRenderingContext2d',
+  'HtmlCanvasElement',
+  'HtmlInputElement',
+  'ImageData',
+  'console',
 ]
 
 [dependencies.rand]
